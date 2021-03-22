@@ -152,6 +152,7 @@ class sortThis{
      $my_array[$j+1] = $val;
    }
     $this->shorted = $my_array;
+
     $this->set_endTime();
   }
 }
@@ -173,10 +174,10 @@ $insertion_sort_t_h_thousand = new sortThis("Insertion Sort", 100000);
 $insertion_sort_t_h_thousand->insertion_Sort($insertion_sort_t_h_thousand->get_unshorted_list());
 echo $insertion_sort_t_h_thousand->bottomText_general( '10,0000' );
 
-$insertion_sort_t_h_thousand = new sortThis("Insertion Sort", 1000000);
-$insertion_sort_t_h_thousand->insertion_Sort($insertion_sort_t_h_thousand->get_unshorted_list());
-echo $insertion_sort_t_h_thousand->bottomText_general( '10,0000' );
+$insertion_sort_mill = new sortThis("Insertion Sort", 1000000);
+$insertion_sort_mill->insertion_Sort($insertion_sort_mill->get_unshorted_list());
+echo $insertion_sort_mill->bottomText_general( '10,0000' );
 
-$insertion_sort_t_h_thousand = new sortThis("Insertion Sort", 10000000);
-$insertion_sort_t_h_thousand->insertion_Sort($insertion_sort_t_h_thousand->get_unshorted_list());
-echo $insertion_sort_t_h_thousand->bottomText_general( '10,0000' );
+$insertion_sort_t_mill = new sortThis("Insertion Sort", 10000000);
+$insertion_sort_t_mill->insertion_Sort($insertion_sort_t_mill->get_unshorted_list());
+echo $insertion_sort_t_mill->bottomText_general( '10,0000' );
