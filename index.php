@@ -18,6 +18,9 @@ class sortThis{
   // hold those instance variables
   public static $masterArray = array();
 
+  // hold largest number in array
+  public $largestNumber;
+
   function __construct($type, $num ){
     $this->sortType = $type;
     $this->num = $num;
@@ -114,62 +117,21 @@ class sortThis{
   }
 
   public function blockText_counting($type = "", $gen_array = "", $sort_array = "", $largest_number ="" ,$time="" ){
-    $output = "
-    <pre>
-    $type
-    Data Generated : $gen_array
-    Sorted Data: $sort_array
-    Largest Number: $largest_number
-    Time: $time
-    </pre>
-    ";
-    echo $output;
-  }
+    $output = $num .'numbers, time: '. $this->get_execution();
 
-  public function table_markup(){
-    $styles =  file_get_contents("styles.css");
-    $output = $styles;
-    $output .= '<table>';
-    $output .= '<tbody>';
-    $output .= '<tr>';
-    $output .= '<th>&nbsp;</th>';
-    $output .= '<th>Insertion Sort</th>';
-    $output .= '<th>Heap Sort</th>';
-    $output .= '<th>Counting Sort</th>';
-    $output .= '</tr>';
-    $output .= '<tr>';
-    $output .= '<td>10</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '</tr>';
-    $output .= '<tr>';
-    $output .= '<td>10,000</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '</tr>';
-    $output .= '<tr>';
-    $output .= '<td>100,000</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '</tr>';
-    $output .= '<tr>';
-    $output .= '<td>1,000,000</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '</tr>';
-    $output .= '<tr>';
-    $output .= '<td>10,000,000</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '<td>&nbsp;</td>';
-    $output .= '</tr>';
-    $output .= '</tbody>';
-    $output .= '</table>';
-    echo $output;
+    $output  = '<table>';
+      $output  .= '<tbody>';
+        $output  .= '<tr>';
+          $output  .= '<td>'.$num.' numbers</td>';
+          $output  .= '<td>Time:'.$this->get_execution().'</td>';
+        $output  .= '</tr>';
+        $output  .= '<tr>';
+          $output  .= '<td>Largest Number</td>';
+          $output  .= '<td>Time:'.$this->get_execution().'</td>';
+        $output  .= '</tr>';
+      $output  .= '</tbody>';
+    $output  .= '</table>';
+    return $output;
   }
 
   public function get_sorted_array(){
