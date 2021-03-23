@@ -1,5 +1,5 @@
 <?php
-ini_set('memory_limit', '1G');
+ini_set('memory_limit', '3G');
 ini_set('max_execution_time', '0'); // for infinite time of execution
 
 class sortThis{
@@ -172,12 +172,12 @@ echo $insertion_sort_t_thousand->bottomText_general( '10,000' );
 
 $insertion_sort_t_h_thousand = new sortThis("Insertion Sort", 100000);
 $insertion_sort_t_h_thousand->insertion_Sort($insertion_sort_t_h_thousand->get_unshorted_list());
-echo $insertion_sort_t_h_thousand->bottomText_general( '10,0000' );
+echo $insertion_sort_t_h_thousand->bottomText_general( '100,000' );
 
 $insertion_sort_mill = new sortThis("Insertion Sort", 1000000);
 $insertion_sort_mill->insertion_Sort($insertion_sort_mill->get_unshorted_list());
-echo $insertion_sort_mill->bottomText_general( '10,0000' );
+echo $insertion_sort_mill->bottomText_general( '1,000,000' );
 
 $insertion_sort_t_mill = new sortThis("Insertion Sort", 10000000);
 $insertion_sort_t_mill->insertion_Sort($insertion_sort_t_mill->get_unshorted_list());
-echo $insertion_sort_t_mill->bottomText_general( '10,0000' );
+echo $insertion_sort_t_mill->bottomText_general( '10,000,000' );
