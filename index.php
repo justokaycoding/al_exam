@@ -137,22 +137,66 @@ class sortThis{
     return $this->shorted;
   }
 
-  public function insertion_Sort($my_array){
+  public function insertion_Sort($array){
 
    $this->set_startTime();
 
-   for($i=0; $i<count($my_array); $i++){
-     $val = $my_array[$i];
+   for($i=0; $i<count($array); $i++){
+     $val = $array[$i];
      $j = $i-1;
-     while($j>=0 && $my_array[$j] > $val){
-       $my_array[$j+1] = $my_array[$j];
+     while($j>=0 && $array[$j] > $val){
+       $array[$j+1] = $array[$j];
        $j--;
      }
-     $my_array[$j+1] = $val;
+     $array[$j+1] = $val;
    }
-    $this->shorted = $my_array;
+    $this->shorted = $array;
 
     $this->set_endTime();
+  }
+
+  public function heapify($arr, $n, $i){
+      $largest = $i; // Initialize largest as root
+      $l = 2*$i + 1; // left = 2*i + 1
+      $r = 2*$i + 2; // right = 2*i + 2
+
+      // If left child is larger than root
+      if ($l < $n && $arr[$l] > $arr[$largest]){
+          $largest = $l;
+        }
+
+      // If right child is larger than largest so far
+      if ($r < $n && $arr[$r] > $arr[$largest]){
+          $largest = $r;
+      }
+
+      // If largest is not root
+      if ($largest != $i){
+          $swap = $arr[$i];
+          $arr[$i] = $arr[$largest];
+          $arr[$largest] = $swap;
+        }
+          // Recursively heapify the affected sub-tree
+          $this->heapify($arr, $n, $largest);
+      }
+
+  // main function to do heap sort
+  function heap_Sort($arr, $n){
+      // Build heap (rearrange array)
+      for ($i = $n / 2 - 1; $i >= 0; $i--){
+          $this->heapify($arr, $n, $i);
+        }
+
+      // One by one extract an element from heap
+      for ($i = $n-1; $i > 0; $i--){
+          // Move current root to end
+          $temp = $arr[0];
+              $arr[0] = $arr[$i];
+              $arr[$i] = $temp;
+
+          // call max heapify on the reduced heap
+          $this->heapify($arr, $i, 0);
+      }
   }
 }
 
@@ -162,25 +206,33 @@ echo file_get_contents("styles.css");
 $dummyData = new dummyData();
 
 //instace of number
-$insertion_sort_t = new sortThis("Insertion Sort", $dummyData->get_ten_Array());
+//$insertion_sort_t = new sortThis("Insertion Sort", $dummyData->get_ten_Array());
 //sort number
-$insertion_sort_t->insertion_Sort($insertion_sort_t->get_unshorted_list());
+//$insertion_sort_t->insertion_Sort($insertion_sort_t->get_unshorted_list());
 //markup build
-$insertion_sort_t->topText_general( $insertion_sort_t->get_sort_type(), $insertion_sort_t->get_unshorted_list(), $insertion_sort_t->get_shorted_list(), $insertion_sort_t->get_execution() );
+//$insertion_sort_t->topText_general( $insertion_sort_t->get_sort_type(), $insertion_sort_t->get_unshorted_list(), $insertion_sort_t->get_shorted_list(), $insertion_sort_t->get_execution() );
 
 
-$insertion_sort_t_thousand = new sortThis("Insertion Sort", $dummyData->get_ten_thous_Array());
-$insertion_sort_t_thousand->insertion_Sort($insertion_sort_t_thousand->get_unshorted_list());
-echo $insertion_sort_t_thousand->bottomText_general( '10,000' );
+// $insertion_sort_t_thousand = new sortThis("Insertion Sort", $dummyData->get_ten_thous_Array());
+// $insertion_sort_t_thousand->insertion_Sort($insertion_sort_t_thousand->get_unshorted_list());
+// echo $insertion_sort_t_thousand->bottomText_general( '10,000' );
+//
+// $insertion_sort_t_h_thousand = new sortThis("Insertion Sort", $dummyData->get_hun_thous_Array());
+// $insertion_sort_t_h_thousand->insertion_Sort($insertion_sort_t_h_thousand->get_unshorted_list());
+// echo $insertion_sort_t_h_thousand->bottomText_general( '100,000' );
+//
+// $insertion_sort_mill = new sortThis("Insertion Sort", $dummyData->get_mill_Array());
+// $insertion_sort_mill->insertion_Sort($insertion_sort_mill->get_unshorted_list());
+// echo $insertion_sort_mill->bottomText_general( '1,000,000' );
+//
+// $insertion_sort_t_mill = new sortThis("Insertion Sort", $dummyData->get_ten_mill_Array());
+// $insertion_sort_t_mill->insertion_Sort($insertion_sort_t_mill->get_unshorted_list());
+// echo $insertion_sort_t_mill->bottomText_general( '10,000,000' );
 
-$insertion_sort_t_h_thousand = new sortThis("Insertion Sort", $dummyData->get_hun_thous_Array());
-$insertion_sort_t_h_thousand->insertion_Sort($insertion_sort_t_h_thousand->get_unshorted_list());
-echo $insertion_sort_t_h_thousand->bottomText_general( '100,000' );
-
-$insertion_sort_mill = new sortThis("Insertion Sort", $dummyData->get_mill_Array());
-$insertion_sort_mill->insertion_Sort($insertion_sort_mill->get_unshorted_list());
-echo $insertion_sort_mill->bottomText_general( '1,000,000' );
-
-$insertion_sort_t_mill = new sortThis("Insertion Sort", $dummyData->get_ten_mill_Array());
-$insertion_sort_t_mill->insertion_Sort($insertion_sort_t_mill->get_unshorted_list());
-echo $insertion_sort_t_mill->bottomText_general( '10,000,000' );
+//instace of number
+$heap_sort_t = new sortThis("Heap Sort", $dummyData->get_ten_Array());
+//sort number
+$n = sizeof($heap_sort_t->get_unshorted_list())/sizeof($heap_sort_t->get_unshorted_list()[0]);
+$heap_sort_t->heap_Sort($heap_sort_t->get_unshorted_list(), $n);
+//markup build
+$heap_sort_t->topText_general( $heap_sort_t->get_sort_type(), $heap_sort_t->get_unshorted_list(), $heap_sort_t->get_shorted_list(), $heap_sort_t->get_execution() );
