@@ -1,6 +1,7 @@
 <?php
-ini_set('memory_limit', '3G');
+ini_set('memory_limit', '128G');
 ini_set('max_execution_time', '0'); // for infinite time of execution
+require_once('dummyData.php');
 
 class sortThis{
   //type of sort method
@@ -15,8 +16,6 @@ class sortThis{
   private $startTime;
   //app end time
   private $endTime;
-  // hold those instance variables
-  public static $masterArray = array();
 
   // hold largest number in array
   public $largestNumber;
@@ -24,7 +23,7 @@ class sortThis{
   function __construct($type, $num ){
     $this->sortType = $type;
     $this->num = $num;
-    $this->set_unshorted_list($this->genNumber($this->num));
+    $this->set_unshorted_list($this->num);
 
   }
 
@@ -159,25 +158,29 @@ class sortThis{
 
 echo file_get_contents("styles.css");
 
+//dummy dataClass
+$dummyData = new dummyData();
+
 //instace of number
-$insertion_sort_t = new sortThis("Insertion Sort", 10);
+$insertion_sort_t = new sortThis("Insertion Sort", $dummyData->get_ten_Array());
 //sort number
 $insertion_sort_t->insertion_Sort($insertion_sort_t->get_unshorted_list());
 //markup build
 $insertion_sort_t->topText_general( $insertion_sort_t->get_sort_type(), $insertion_sort_t->get_unshorted_list(), $insertion_sort_t->get_shorted_list(), $insertion_sort_t->get_execution() );
 
-$insertion_sort_t_thousand = new sortThis("Insertion Sort", 10000);
+
+$insertion_sort_t_thousand = new sortThis("Insertion Sort", $dummyData->get_ten_thous_Array());
 $insertion_sort_t_thousand->insertion_Sort($insertion_sort_t_thousand->get_unshorted_list());
 echo $insertion_sort_t_thousand->bottomText_general( '10,000' );
 
-$insertion_sort_t_h_thousand = new sortThis("Insertion Sort", 100000);
+$insertion_sort_t_h_thousand = new sortThis("Insertion Sort", $dummyData->get_hun_thous_Array());
 $insertion_sort_t_h_thousand->insertion_Sort($insertion_sort_t_h_thousand->get_unshorted_list());
 echo $insertion_sort_t_h_thousand->bottomText_general( '100,000' );
 
-$insertion_sort_mill = new sortThis("Insertion Sort", 1000000);
+$insertion_sort_mill = new sortThis("Insertion Sort", $dummyData->get_mill_Array());
 $insertion_sort_mill->insertion_Sort($insertion_sort_mill->get_unshorted_list());
 echo $insertion_sort_mill->bottomText_general( '1,000,000' );
 
-$insertion_sort_t_mill = new sortThis("Insertion Sort", 10000000);
+$insertion_sort_t_mill = new sortThis("Insertion Sort", $dummyData->get_ten_mill_Array());
 $insertion_sort_t_mill->insertion_Sort($insertion_sort_t_mill->get_unshorted_list());
 echo $insertion_sort_t_mill->bottomText_general( '10,000,000' );
