@@ -24,8 +24,12 @@ tr td:nth-of-type(2) {
     width: 80%;
 }
 hr {
-    border-width: 16px;
-    border-color: black;
-    border: 10px solid;
+  border-width: 16px;
+  border-color: black;
+  border: 10px solid;
+  margin: 62px 0;
+}
+#final td {
+    width: auto;
 }
 </style>
