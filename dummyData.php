@@ -27,39 +27,46 @@ class dummyData{
     $this->ten_Array = $array;
   }
 
-  public function set_ten_thous_Array($array){
-    $this->hun_thous_Array = $array;
-  }
-
-  public function set_hun_thous_Array($array){
-    $this->hun_thous_Array = $array;
-  }
-
-  public function set_mill_Array($array){
-    $this->mill_Array = $array;
-  }
-
-  public function set_ten_mill_Array($array){
-    $this->unshorted_list = $array;
-  }
-
   public function get_ten_Array(){
     return $this->ten_Array;
   }
 
+  ////////////////////////////////////////////////
+
+  public function set_ten_thous_Array($array){
+    $this->ten_thous_Array = $array;
+  }
+
   public function get_ten_thous_Array(){
-    return $this->hun_thous_Array;
+    return $this->ten_thous_Array;
+  }
+
+  ////////////////////////////////////////////////
+  public function set_hun_thous_Array($array){
+    $this->hun_thous_Array = $array;
   }
 
   public function get_hun_thous_Array(){
     return $this->hun_thous_Array;
   }
 
+  ////////////////////////////////////////////////
+
+  public function set_mill_Array($array){
+    $this->mill_Array = $array;
+  }
+
   public function get_mill_Array(){
     return $this->mill_Array;
   }
+  ////////////////////////////////////////////////
+
+  public function set_ten_mill_Array($array){
+    $this->ten_mill_Array = $array;
+  }
 
   public function get_ten_mill_Array(){
-    return $this->unshorted_list;
+    return $this->ten_mill_Array;
   }
+  ////////////////////////////////////////////////
 }
