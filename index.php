@@ -148,7 +148,7 @@ class sortThis{
     $this->set_endTime();
   }
 
-  function heapsort(&$Array, $n) {
+  public function heapsort(&$Array, $n) {
 
     $this->set_startTime();
 
@@ -173,7 +173,7 @@ class sortThis{
   // heapify function is used to build the max heap
   // max heap has maximum element at the root which means
   // first element of the array will be maximum in max heap
-  function heapify(&$Array, $n, $i) {
+  public function heapify(&$Array, $n, $i) {
     $max = $i;
     $left = 2*$i + 1;
     $right = 2*$i + 2;
@@ -198,6 +198,42 @@ class sortThis{
     }
   }
 
+  public function countSort(&$Array, $n) {
+    $this->set_startTime();
+    $max = 0;
+
+    //find largest element in the Array
+    for ($i=0; $i<$n; $i++) {
+      if($max < $Array[$i]) {
+        $max = $Array[$i];
+        $this->largestNumber = $max;
+      }
+    }
+
+    //Create a freq array to store number of occurrences of
+    //each unique elements in the given array
+    for ($i=0; $i<$max+1; $i++) {
+      $freq[$i] = 0;
+    }
+
+    for ($i=0; $i<$n; $i++) {
+      $freq[$Array[$i]]++;
+    }
+
+    //sort the given array using freq array
+    for ($i=0, $j=0; $i<=$max; $i++) {
+      while($freq[$i]>0) {
+        $Array[$j] = $i;
+        $j++;
+        $freq[$i]--;
+      }
+    }
+      $this->shorted = $Array;
+      $this->set_endTime();
+  }
+
+
+
 }
 
 echo file_get_contents("styles.css");
@@ -212,13 +248,13 @@ $insertion_sort_t->insertion_Sort($insertion_sort_t->get_unshorted_list());
 // markup build
 $insertion_sort_t->topText_general( $insertion_sort_t->get_sort_type(), $insertion_sort_t->get_unshorted_list(), $insertion_sort_t->get_shorted_list(), $insertion_sort_t->get_execution() );
 
-$insertion_sort_t_thousand = new sortThis("Insertion Sort", $dummyData->get_ten_thous_Array());
-$insertion_sort_t_thousand->insertion_Sort($insertion_sort_t_thousand->get_unshorted_list());
-echo $insertion_sort_t_thousand->bottomText_general( '10,000' );
+// $insertion_sort_t_thousand = new sortThis("Insertion Sort", $dummyData->get_ten_thous_Array());
+// $insertion_sort_t_thousand->insertion_Sort($insertion_sort_t_thousand->get_unshorted_list());
+// echo $insertion_sort_t_thousand->bottomText_general( '10,000' );
 
-$insertion_sort_h_thousand = new sortThis("Insertion Sort", $dummyData->get_hun_thous_Array());
-$insertion_sort_h_thousand->insertion_Sort($insertion_sort_h_thousand->get_unshorted_list());
-echo $insertion_sort_h_thousand->bottomText_general( '100,000' );
+// $insertion_sort_h_thousand = new sortThis("Insertion Sort", $dummyData->get_hun_thous_Array());
+// $insertion_sort_h_thousand->insertion_Sort($insertion_sort_h_thousand->get_unshorted_list());
+// echo $insertion_sort_h_thousand->bottomText_general( '100,000' );
 
 // $insertion_sort_mill = new sortThis("Insertion Sort", $dummyData->get_mill_Array());
 // $insertion_sort_mill->insertion_Sort($insertion_sort_mill->get_unshorted_list());
@@ -230,40 +266,38 @@ echo $insertion_sort_h_thousand->bottomText_general( '100,000' );
 
 echo '<hr>';
 
-//instace of number
 $heap_sort_t = new sortThis("Heap Sort", $dummyData->get_ten_Array());
-//init size of heap
-$n = sizeof($heap_sort_t->get_unshorted_list());
-$heap_sort_t->heapSort($heap_sort_t->get_unshorted_list(), $n);
-//markup build
+$heap_sort_t->heapSort($heap_sort_t->get_unshorted_list(), sizeof($heap_sort_t->get_unshorted_list()));
 $heap_sort_t->topText_general( $heap_sort_t->get_sort_type(), $heap_sort_t->get_unshorted_list(), $heap_sort_t->get_shorted_list(), $heap_sort_t->get_execution() );
-//
-$heap_sort_t_thousand = new sortThis("Heap Sort", $dummyData->get_ten_thous_Array());
-$n = sizeof($heap_sort_t_thousand->get_unshorted_list())/sizeof($heap_sort_t_thousand->get_unshorted_list()[0]);
-$heap_sort_t_thousand->heapSort($heap_sort_t_thousand->get_unshorted_list(), $n);
-echo $heap_sort_t_thousand->bottomText_general( '10,000' );
 
-$heap_sort_hun_thousand = new sortThis("Heap Sort", $dummyData->get_hun_thous_Array());
-$n = sizeof($heap_sort_hun_thousand->get_unshorted_list())/sizeof($heap_sort_hun_thousand->get_unshorted_list()[0]);
-$heap_sort_hun_thousand->heapSort($heap_sort_hun_thousand->get_unshorted_list(), $n);
-echo $heap_sort_hun_thousand->bottomText_general( '100,000' );
+// $heap_sort_t_thousand = new sortThis("Heap Sort", $dummyData->get_ten_thous_Array());
+// $heap_sort_t_thousand->heapSort($heap_sort_t_thousand->get_unshorted_list(), sizeof($heap_sort_t->get_unshorted_list()));
+// echo $heap_sort_t_thousand->bottomText_general( '10,000' );
 
-$heap_sort_mill = new sortThis("Heap Sort", $dummyData->get_mill_Array());
-$n = sizeof($heap_sort_mill->get_unshorted_list())/sizeof($heap_sort_mill->get_unshorted_list()[0]);
-$heap_sort_mill->heapSort($heap_sort_mill->get_unshorted_list(), $n);
-echo $heap_sort_mill->bottomText_general( '1,000,000' );
+// $heap_sort_hun_thousand = new sortThis("Heap Sort", $dummyData->get_hun_thous_Array());
+// $heap_sort_hun_thousand->heapSort($heap_sort_hun_thousand->get_unshorted_list(), sizeof($heap_sort_t->get_unshorted_list()));
+// echo $heap_sort_hun_thousand->bottomText_general( '100,000' );
 
-$heap_sort_t_mill = new sortThis("Heap Sort", $dummyData->get_ten_mill_Array());
-$n = sizeof($heap_sort_t_mill->get_unshorted_list())/sizeof($heap_sort_t_mill->get_unshorted_list()[0]);
-$heap_sort_t_mill->heapSort($heap_sort_t_mill->get_unshorted_list(), $n);
-echo $heap_sort_t_mill->bottomText_general( '10,000,000' );
+// $heap_sort_mill = new sortThis("Heap Sort", $dummyData->get_mill_Array());
+// $heap_sort_mill->heapSort($heap_sort_mill->get_unshorted_list(), sizeof($heap_sort_t->get_unshorted_list()));
+// echo $heap_sort_mill->bottomText_general( '1,000,000' );
+
+// $heap_sort_t_mill = new sortThis("Heap Sort", $dummyData->get_ten_mill_Array());
+// $heap_sort_t_mill->heapSort($heap_sort_t_mill->get_unshorted_list(), sizeof($heap_sort_t->get_unshorted_list());
+// echo $heap_sort_t_mill->bottomText_general( '10,000,000' );
 
 echo '<hr>';
+
+//instace of number
+$courting_sort_t = new sortThis("Counting Sort", $dummyData->get_ten_Array());
+$courting_sort_t->countSort($courting_sort_t->get_unshorted_list(), sizeof($courting_sort_t->get_unshorted_list()));
+$courting_sort_t->topText_general( $courting_sort_t->get_sort_type(), $courting_sort_t->get_unshorted_list(), $courting_sort_t->get_shorted_list(), $courting_sort_t->get_execution() );
+
 
 
 $result1 = !is_null($insertion_sort_t)  ? $insertion_sort_t->get_execution() : '-NOT PERFORMED-';
 $result2 = !is_null($heap_sort_t) ? $heap_sort_t->get_execution() : '-NOT PERFORMED-';
-// $result3 = is_null('yrdy') ? 'foo' : '-NOT PERFORMED-';
+$result3 = !is_null($courting_sort_t) ? $courting_sort_t->get_execution() : '-NOT PERFORMED-';
 
 $result4 = !is_null($insertion_sort_t_thousand) ? $insertion_sort_t_thousand->get_execution() : '-NOT PERFORMED-';
 $result5 = !is_null($heap_sort_t_thousand) ? $heap_sort_t_thousand->get_execution() : '-NOT PERFORMED-';
@@ -294,7 +328,7 @@ $output .='<tr>';
 $output .='<td>10</td>';
 $output .='<td>'.$result1.'</td>';
 $output .='<td>'.$result2.'</td>';
-$output .='<td>&nbsp;</td>';
+$output .='<td>'.$result3.'</td>';
 $output .='</tr>';
 $output .='<tr>';
 $output .='<td>10,000</td>';
