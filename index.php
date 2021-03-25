@@ -17,7 +17,6 @@ class sortThis{
   private $startTime;
   //app end time
   private $endTime;
-
   // hold largest number in array
   public $largestNumber;
 
@@ -69,6 +68,16 @@ class sortThis{
     $gen_array = is_array($gen_array)? implode(', ', $gen_array) : 'error';
     $sort_array = is_array($sort_array)? implode(', ', $sort_array) : 'error';
 
+    if($type == 'Counting Sort' ){
+      $addOn  = '<tr>';
+      $addOn  .= '<td>Largest Number</td>';
+      $addOn  .= '<td>'.$this->largestNumber.'</td>';
+      $addOn  .= '</tr>';
+      $addOn  .= '<tr>';
+    } else{
+      $addOn  =  '';
+    }
+
 
     $output  = '<table>';
       $output  .= '<tbody>';
@@ -88,6 +97,7 @@ class sortThis{
           $output  .= '<td>Time</td>';
           $output  .= '<td>'.$time.'</td>';
         $output  .= '</tr>';
+        $output  .= $addOn;
       $output  .= '</tbody>';
     $output  .= '</table>';
 
@@ -95,13 +105,19 @@ class sortThis{
   }
 
   public function bottomText_general($num){
-    $output = $num .'numbers, time: '. $this->get_execution();
+
+    if($this->get_sort_type() == 'Counting Sort' ){
+      $addOn  = '<span>Largest Number: '.$this->largestNumber.'</span>';
+
+    } else{
+      $addOn  =  '';
+    }
 
     $output  = '<table>';
       $output  .= '<tbody>';
         $output  .= '<tr>';
           $output  .= '<td>'.$num.' numbers</td>';
-          $output  .= '<td>Time:'.$this->get_execution().'</td>';
+          $output  .= '<td>'.$addOn.' Time:'.$this->get_execution().'</td>';
         $output  .= '</tr>';
       $output  .= '</tbody>';
     $output  .= '</table>';
@@ -237,48 +253,48 @@ echo file_get_contents("styles.css");
 
 $dummyData = new dummyData(); // create instance of data
 
-// $insertion_sort_t = new sortThis("Insertion Sort", $dummyData->get_ten_Array());
-// $insertion_sort_t->insertion_Sort($insertion_sort_t->get_unshorted_list());
-// $insertion_sort_t->topText_general( $insertion_sort_t->get_sort_type(), $insertion_sort_t->get_unshorted_list(), $insertion_sort_t->get_shorted_list(), $insertion_sort_t->get_execution() );
-//
-// $insertion_sort_t_thousand = new sortThis("Insertion Sort", $dummyData->get_ten_thous_Array());
-// $insertion_sort_t_thousand->insertion_Sort($insertion_sort_t_thousand->get_unshorted_list());
-// echo $insertion_sort_t_thousand->bottomText_general( '10,000' );
+$insertion_sort_t = new sortThis("Insertion Sort", $dummyData->get_ten_Array());
+$insertion_sort_t->insertion_Sort($insertion_sort_t->get_unshorted_list());
+$insertion_sort_t->topText_general( $insertion_sort_t->get_sort_type(), $insertion_sort_t->get_unshorted_list(), $insertion_sort_t->get_shorted_list(), $insertion_sort_t->get_execution() );
 
-// $insertion_sort_h_thousand = new sortThis("Insertion Sort", $dummyData->get_hun_thous_Array());
-// $insertion_sort_h_thousand->insertion_Sort($insertion_sort_h_thousand->get_unshorted_list());
-// echo $insertion_sort_h_thousand->bottomText_general( '100,000' );
-//
-// $insertion_sort_mill = new sortThis("Insertion Sort", $dummyData->get_mill_Array());
-// $insertion_sort_mill->insertion_Sort($insertion_sort_mill->get_unshorted_list());
-// echo $insertion_sort_mill->bottomText_general( '1,000,000' );
-//
-// $insertion_sort_t_mill = new sortThis("Insertion Sort", $dummyData->get_ten_mill_Array());
-// $insertion_sort_t_mill->insertion_Sort($insertion_sort_t_mill->get_unshorted_list());
-// echo $insertion_sort_t_mill->bottomText_general( '10,000,000' );
+$insertion_sort_t_thousand = new sortThis("Insertion Sort", $dummyData->get_ten_thous_Array());
+$insertion_sort_t_thousand->insertion_Sort($insertion_sort_t_thousand->get_unshorted_list());
+echo $insertion_sort_t_thousand->bottomText_general( '10,000' );
+
+$insertion_sort_h_thousand = new sortThis("Insertion Sort", $dummyData->get_hun_thous_Array());
+$insertion_sort_h_thousand->insertion_Sort($insertion_sort_h_thousand->get_unshorted_list());
+echo $insertion_sort_h_thousand->bottomText_general( '100,000' );
+
+$insertion_sort_mill = new sortThis("Insertion Sort", $dummyData->get_mill_Array());
+$insertion_sort_mill->insertion_Sort($insertion_sort_mill->get_unshorted_list());
+echo $insertion_sort_mill->bottomText_general( '1,000,000' );
+
+$insertion_sort_t_mill = new sortThis("Insertion Sort", $dummyData->get_ten_mill_Array());
+$insertion_sort_t_mill->insertion_Sort($insertion_sort_t_mill->get_unshorted_list());
+echo $insertion_sort_t_mill->bottomText_general( '10,000,000' );
 
 echo '<hr>';
 
-// $heap_sort_t = new sortThis("Heap Sort", $dummyData->get_ten_Array());
-// $heap_sort_t->heapSort($heap_sort_t->get_unshorted_list(), sizeof($heap_sort_t->get_unshorted_list()));
-// $heap_sort_t->topText_general( $heap_sort_t->get_sort_type(), $heap_sort_t->get_unshorted_list(), $heap_sort_t->get_shorted_list(), $heap_sort_t->get_execution() );
+$heap_sort_t = new sortThis("Heap Sort", $dummyData->get_ten_Array());
+$heap_sort_t->heapSort($heap_sort_t->get_unshorted_list(), sizeof($heap_sort_t->get_unshorted_list()));
+$heap_sort_t->topText_general( $heap_sort_t->get_sort_type(), $heap_sort_t->get_unshorted_list(), $heap_sort_t->get_shorted_list(), $heap_sort_t->get_execution() );
 
 
-// $heap_sort_t_thousand = new sortThis("Heap Sort", $dummyData->get_ten_thous_Array());
-// $heap_sort_t_thousand->heapSort($heap_sort_t_thousand->get_unshorted_list(), sizeof($heap_sort_t_thousand->get_unshorted_list()));
-// echo $heap_sort_t_thousand->bottomText_general( '10,000' );
+$heap_sort_t_thousand = new sortThis("Heap Sort", $dummyData->get_ten_thous_Array());
+$heap_sort_t_thousand->heapSort($heap_sort_t_thousand->get_unshorted_list(), sizeof($heap_sort_t_thousand->get_unshorted_list()));
+echo $heap_sort_t_thousand->bottomText_general( '10,000' );
 
-// $heap_sort_hun_thousand = new sortThis("Heap Sort", $dummyData->get_hun_thous_Array());
-// $heap_sort_hun_thousand->heapSort($heap_sort_hun_thousand->get_unshorted_list(), sizeof($heap_sort_hun_thousand->get_unshorted_list()));
-// echo $heap_sort_hun_thousand->bottomText_general( '100,000' );
+$heap_sort_hun_thousand = new sortThis("Heap Sort", $dummyData->get_hun_thous_Array());
+$heap_sort_hun_thousand->heapSort($heap_sort_hun_thousand->get_unshorted_list(), sizeof($heap_sort_hun_thousand->get_unshorted_list()));
+echo $heap_sort_hun_thousand->bottomText_general( '100,000' );
 
-// $heap_sort_mill = new sortThis("Heap Sort", $dummyData->get_mill_Array());
-// $heap_sort_mill->heapSort($heap_sort_mill->get_unshorted_list(), sizeof($heap_sort_mill->get_unshorted_list()));
-// echo $heap_sort_mill->bottomText_general( '1,000,000' );
+$heap_sort_mill = new sortThis("Heap Sort", $dummyData->get_mill_Array());
+$heap_sort_mill->heapSort($heap_sort_mill->get_unshorted_list(), sizeof($heap_sort_mill->get_unshorted_list()));
+echo $heap_sort_mill->bottomText_general( '1,000,000' );
 
-// $heap_sort_t_mill = new sortThis("Heap Sort", $dummyData->get_ten_mill_Array());
-// $heap_sort_t_mill->heapSort($heap_sort_t_mill->get_unshorted_list(), sizeof($heap_sort_t_mill->get_unshorted_list()));
-// echo $heap_sort_t_mill->bottomText_general( '10,000,000' );
+$heap_sort_t_mill = new sortThis("Heap Sort", $dummyData->get_ten_mill_Array());
+$heap_sort_t_mill->heapSort($heap_sort_t_mill->get_unshorted_list(), sizeof($heap_sort_t_mill->get_unshorted_list()));
+echo $heap_sort_t_mill->bottomText_general( '10,000,000' );
 
 echo '<hr>';
 //
@@ -286,21 +302,21 @@ $courting_sort_t = new sortThis("Counting Sort", $dummyData->get_ten_Array());
 $courting_sort_t->countSort($courting_sort_t->get_unshorted_list(), sizeof($courting_sort_t->get_unshorted_list()));
 $courting_sort_t->topText_general( $courting_sort_t->get_sort_type(), $courting_sort_t->get_unshorted_list(), $courting_sort_t->get_shorted_list(), $courting_sort_t->get_execution() );
 //
-// $courting_sort_t_thousand = new sortThis("Counting Sort", $dummyData->get_ten_Array());
-// $courting_sort_t_thousand->countSort($courting_sort_t_thousand->get_unshorted_list(), sizeof($courting_sort_t_thousand->get_unshorted_list()));
-// echo $courting_sort_t_thousand->bottomText_general( '10,000' );
-//
-// $courting_sort_hun_thousand = new sortThis("Counting Sort", $dummyData->get_ten_Array());
-// $courting_sort_hun_thousand->countSort($courting_sort_hun_thousand->get_unshorted_list(), sizeof($courting_sort_hun_thousand->get_unshorted_list()));
-// echo $courting_sort_hun_thousand->bottomText_general( '100,000' );
-//
-// $courting_sort_mill = new sortThis("Counting Sort", $dummyData->get_ten_Array());
-// $courting_sort_mill->countSort($courting_sort_mill->get_unshorted_list(), sizeof($courting_sort_mill->get_unshorted_list()));
-// echo $courting_sort_mill->bottomText_general( '1,000,000' );
-//
-// $courting_sort_t_mill = new sortThis("Counting Sort", $dummyData->get_ten_Array());
-// $courting_sort_t_mill->countSort($courting_sort_t_mill->get_unshorted_list(), sizeof($courting_sort_t_mill->get_unshorted_list()));
-// echo $courting_sort_t_mill->bottomText_general( '10,000,000' );
+$courting_sort_t_thousand = new sortThis("Counting Sort", $dummyData->get_ten_thous_Array());
+$courting_sort_t_thousand->countSort($courting_sort_t_thousand->get_unshorted_list(), sizeof($courting_sort_t_thousand->get_unshorted_list()));
+echo $courting_sort_t_thousand->bottomText_general( '10,000' );
+
+$courting_sort_hun_thousand = new sortThis("Counting Sort", $dummyData->get_hun_thous_Array());
+$courting_sort_hun_thousand->countSort($courting_sort_hun_thousand->get_unshorted_list(), sizeof($courting_sort_hun_thousand->get_unshorted_list()));
+echo $courting_sort_hun_thousand->bottomText_general( '100,000' );
+
+$courting_sort_mill = new sortThis("Counting Sort", $dummyData->get_mill_Array());
+$courting_sort_mill->countSort($courting_sort_mill->get_unshorted_list(), sizeof($courting_sort_mill->get_unshorted_list()));
+echo $courting_sort_mill->bottomText_general( '1,000,000' );
+
+$courting_sort_t_mill = new sortThis("Counting Sort", $dummyData->get_ten_mill_Array());
+$courting_sort_t_mill->countSort($courting_sort_t_mill->get_unshorted_list(), sizeof($courting_sort_t_mill->get_unshorted_list()));
+echo $courting_sort_t_mill->bottomText_general( '10,000,000' );
 
 
 $result1 = !is_null($insertion_sort_t)  ? $insertion_sort_t->get_execution() : '-NOT PERFORMED-';
