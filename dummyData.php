@@ -17,7 +17,7 @@ class dummyData{
 
   public function genNumber($count){
     $fourRandomDigit = array();
-    for($index = 0; $index <= $count; $count--){
+    for($index = 1; $index <= $count; $count--){
       array_push($fourRandomDigit, mt_rand(1000,9999));
     }
     return $fourRandomDigit;
