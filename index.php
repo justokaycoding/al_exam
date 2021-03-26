@@ -251,9 +251,9 @@ echo file_get_contents("styles.css");
 
 $dummyData = new dummyData(); // create instance of data
 
-// $insertion_sort_t = new sortThis("Insertion Sort", $dummyData->get_ten_Array());
-// $insertion_sort_t->insertion_Sort($insertion_sort_t->get_unshorted_list());
-// $insertion_sort_t->topText_general( $insertion_sort_t->get_sort_type(), $insertion_sort_t->get_unshorted_list(), $insertion_sort_t->get_shorted_list(), $insertion_sort_t->get_execution() );
+$insertion_sort_t = new sortThis("Insertion Sort", $dummyData->get_ten_Array());
+$insertion_sort_t->insertion_Sort($insertion_sort_t->get_unshorted_list());
+$insertion_sort_t->topText_general( $insertion_sort_t->get_sort_type(), $insertion_sort_t->get_unshorted_list(), $insertion_sort_t->get_shorted_list(), $insertion_sort_t->get_execution() );
 
 // $insertion_sort_t_thousand = new sortThis("Insertion Sort", $dummyData->get_ten_thous_Array());
 // $insertion_sort_t_thousand->insertion_Sort($insertion_sort_t_thousand->get_unshorted_list());
@@ -273,9 +273,9 @@ $dummyData = new dummyData(); // create instance of data
 
 echo '<hr>';
 
-// $heap_sort_t = new sortThis("Heap Sort", $dummyData->get_ten_Array());
-// $heap_sort_t->heapSort($heap_sort_t->get_unshorted_list(), sizeof($heap_sort_t->get_unshorted_list()));
-// $heap_sort_t->topText_general( $heap_sort_t->get_sort_type(), $heap_sort_t->get_unshorted_list(), $heap_sort_t->get_shorted_list(), $heap_sort_t->get_execution() );
+$heap_sort_t = new sortThis("Heap Sort", $dummyData->get_ten_Array());
+$heap_sort_t->heapSort($heap_sort_t->get_unshorted_list(), sizeof($heap_sort_t->get_unshorted_list()));
+$heap_sort_t->topText_general( $heap_sort_t->get_sort_type(), $heap_sort_t->get_unshorted_list(), $heap_sort_t->get_shorted_list(), $heap_sort_t->get_execution() );
 //
 //
 // $heap_sort_t_thousand = new sortThis("Heap Sort", $dummyData->get_ten_thous_Array());
