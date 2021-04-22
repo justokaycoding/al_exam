@@ -143,10 +143,6 @@ class sortThis{
     return $output;
   }
 
-  public function get_sorted_array(){
-    return $this->shorted;
-  }
-
   public function insertion_Sort(&$array){
 
    $this->set_startTime();
