@@ -228,7 +228,7 @@ class sortThis{
       $freq[$Array[$i]]++; // set freq of occurrences [1092]=>int(1) [1093]=>int(2)
     }
 
-    //sort the given array using freq array
+    //sort the given array
     for ($i=0, $j=0; $i<=$max; $i++) {
       while($freq[$i]>0) {
         $Array[$j] = $i;
